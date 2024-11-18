@@ -1,0 +1,24 @@
+[
+  {
+    "limitPrice": 1.25,
+    "takeProfit": 1.3,
+    "stopLoss": 1.19,
+    "positionSize": 2500,
+    "entryPrice": 1.246,
+    "exitPrice": null,
+    "result": "Order Filled",
+    "currentProfitLoss": null,
+    "status": "Open"
+  },
+  {
+    "limitPrice": 1.25,
+    "takeProfit": 1.26,
+    "stopLoss": 1.24,
+    "positionSize": 1000,
+    "entryPrice": 1.241,
+    "exitPrice": null,
+    "result": "Order Filled",
+    "currentProfitLoss": null,
+    "status": "Open"
+  }
+]

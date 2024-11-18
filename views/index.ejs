@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+    <%- include('partials/header') %>
+
+<main>
+<h1>Mock Trading Game</h1>
+
+<div id="currentPrice">
+    <p>Current Price: ${{ currentPrice }}</p> <!-- This will be updated by JS -->
+</div>
+
+<form action="/trade" method="POST">
+    <label for="limitPrice">Limit Price:</label>
+    <input type="number" step="0.0001" name="limitPrice" id="limitPrice" required>
+
+    <label for="takeProfit">Take Profit:</label>
+    <input type="number" step="0.0001" name="takeProfit" id="takeProfit" required>
+
+    <label for="stopLoss">Stop Loss:</label>
+    <input type="number" step="0.0001" name="stopLoss" id="stopLoss" required>
+
+    <label for="positionSize">Position Size (Units):</label>
+    <input type="number" step="0.0001" name="positionSize" id="positionSize" required>
+
+    <button type="submit">Place Trade</button>
+</form>
+
+<div id="balance">
+    <p>Balance: $10000</p> <!-- Initially set the balance here -->
+</div>
+
+
+<h2>Current Position</h2>
+<div id="currentPosition">
+    <% if (openPosition) { %>
+        <p>Current Position:</p>
+        <p>Limit Price: $<%= openPosition.limitPrice.toFixed(2) %></p>
+        <p>Entry Price: $<%= openPosition.entryPrice.toFixed(2) %></p>
+        <p>Position Size: <%= openPosition.positionSize %> LDO</p>
+        <p>Status: <%= openPosition.status %></p>
+        <p>Take Profit: $<%= openPosition.takeProfit.toFixed(2) %></p>
+        <p>Stop Loss: $<%= openPosition.stopLoss.toFixed(2) %></p>
+    <% } else { %>
+        <p>No open position.</p>
+    <% } %>
+</div>
+
+
+<h2>LDO-USD Price Chart (Last 7 days)</h2>
+<canvas id="ldoChart" max-width="500" max-height="500"></canvas>
+
+
+<h2>Trade History</h2>
+<ul>
+    <% trades.forEach(trade => { %>
+        <li>Limit: <%= trade.limitPrice %>, TP: <%= trade.takeProfit %>, SL: <%= trade.stopLoss %>, Entry: <%= trade.entryPrice %>, Result: <%= trade.result %>, Profit/Loss: $<%= trade.currentProfitLoss %></li>
+    <% }) %>
+</ul>
+
+</main>
+<script src="/script.js"></script>
+</body>
+</html>
